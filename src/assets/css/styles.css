@@ -78,6 +78,7 @@ footer {
 	font-size: 15px;
 }
 .cardWrap{
+	color: var(--card-text-color);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04);
 	padding: 20px; 
 	height: 100%;
@@ -260,7 +261,7 @@ table.fixed td { overflow: hidden; }
 .userImg figure{max-width: 160px;margin: 20px auto 10px auto; height: 150px;border-radius: 20px;overflow: hidden; border: 2px solid #000;}
 .userImg{text-align: center;}
 .userName{text-transform: capitalize; font-weight: 700;}
-.userDesignation{ font-weight: 600; display: block; color:#777777; font-size: 14px;}
+.userDesignation{ font-weight: 600; display: block; color:var(--card-text-color); font-size: 14px;}
 .employeeInfo .cardWrap{ position: relative;box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04); padding: 20px;}
 .employeeInfo aside{margin-bottom: 15px;}
 .employeeInfo ul{margin-top: 30px;}

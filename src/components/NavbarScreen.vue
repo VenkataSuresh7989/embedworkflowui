@@ -12,17 +12,17 @@
 						<b-nav-item href="#" @click="btnRefresh" :class="{ show: true }">
 							<font-awesome-icon :icon="['fas', 'arrows-rotate']" /> Refresh
 						</b-nav-item>					
-						<b-nav-item-dropdown text="Options" right :class="{ show: true }"  :active="($route.path == '/tasks' || $route.path == '/builds' || $route.path == '/employee' ) ? true : false ">
+						<b-nav-item-dropdown text="Options" right :class="{ show: true }"  :active="isOptionsActive">
 							<template #button-content>
 								<font-awesome-icon :icon="['fas', 'gear']" /> Options
 							</template>						
-							<b-dropdown-item @click="getRoute('/tasks')">Tasks</b-dropdown-item>
-							<b-dropdown-item @click="getRoute('/builds')">Builds & Releases</b-dropdown-item>
-							<b-dropdown-item @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/tasks'" @click="getRoute('/tasks')">Tasks</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/builds'" @click="getRoute('/builds')">Builds & Releases</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/employee'" @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
 						</b-nav-item-dropdown>
 
 						
-						<!-- <b-nav-item-dropdown text="Workflow" right :class="{ show: true }"  :active="($route.path == '/tasks' || $route.path == '/builds' || $route.path == '/employee' ) ? true : false ">
+						<!-- <b-nav-item-dropdown text="Workflow" right :class="{ show: true }"  :active="isOptionsActive">
 							<template #button-content>
 								<font-awesome-icon :icon="['fas', 'sitemap']" /> Workflow
 							</template>						
@@ -30,7 +30,7 @@
 							<b-dropdown-item @click="getRoute('/builds')">Builds & Releases</b-dropdown-item>
 							<b-dropdown-item @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
 						</b-nav-item-dropdown>
-						<b-nav-item-dropdown text="Docs" right :class="{ show: true }"  :active="($route.path == '/tasks' || $route.path == '/builds' || $route.path == '/employee' ) ? true : false ">
+						<b-nav-item-dropdown text="Docs" right :class="{ show: true }"  :active="isOptionsActive">
 							<template #button-content>
 								<font-awesome-icon :icon="['fas', 'file']" /> Docs
 							</template>						
@@ -88,6 +88,9 @@ export default {
 		}
 	},
   computed: {
+	isOptionsActive() {
+        return ['/tasks', '/builds', '/employee'].includes(this.$route.path);
+    },
     isDisable: function() {
       let roleIdx = getUserRole();
       return ((roleIdx == 0) || (roleIdx == 1)) ? true : false;
