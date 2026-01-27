@@ -1,0 +1,274 @@
+/* ============================= */
+/* DEFAULT THEME - Elegant Blue */
+/* ============================= */
+:root {
+    --gallery-border: #0c768a;
+    --product-active-gradient: linear-gradient(to top, #7dc3ce 0%, #17a2b8 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #0c768a;
+    --primary-bg: #0f0c29;
+    --secondary-bg: #302b63;
+    --tertiary-bg: #24243e;
+    --main-gradient: linear-gradient(135deg, #645ac0, #3e387d, #24243e);
+    --header-bg: #0c768a;
+    --body-bg: #f5f8f9; 
+    --footer-bg: #0c768a;
+    --card-bg: #2ba7ba;
+    --card-text-color: #fff;
+    --btn-primary-bg: #0c768a;
+    --btn-danger-bg: #dc3545;
+    --table-header-bg: #0c768a;
+    --table-header-color: #ffffff;
+    --label-color: #0c768a;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 1 - Ocean Blue */
+/* ============================= */
+.theme-ocean {
+    --gallery-border: #2980b9;
+    --product-active-gradient: linear-gradient(to top, #3498db 0%, #2980b9 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #2980b9;
+    --primary-bg: #2c3e50;
+    --secondary-bg: #34495e;
+    --tertiary-bg: #22313f;
+    --main-gradient: linear-gradient(135deg, #2980b9, #3498db, #22313f);
+    --header-bg: #2980b9;
+    --body-bg: #eaf2f8;
+    --footer-bg: #2980b9;
+    --card-bg: #3498db;
+    --card-text-color: #fff;
+    --btn-primary-bg: #2980b9;
+    --btn-danger-bg: #c0392b;
+    --table-header-bg: #2980b9;
+    --table-header-color: #ffffff;
+    --label-color: #2980b9;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 2 - Sunset Orange */
+/* ============================= */
+.theme-sunset {
+    --gallery-border: #ff512f;
+    --product-active-gradient: linear-gradient(to top, #ff8c42 0%, #ff512f 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #ff512f;
+    --primary-bg: #ff512f;
+    --secondary-bg: #f09819;
+    --tertiary-bg: #ff6e7f;
+    --main-gradient: linear-gradient(135deg, #ff512f, #f09819, #ff6e7f);
+    --header-bg: #ff512f;
+    --body-bg: #fff2f0;
+    --footer-bg: #ff512f;
+    --card-bg: #ff6e7f;
+    --card-text-color: #fff;
+    --btn-primary-bg: #ff512f;
+    --btn-danger-bg: #c0392b;
+    --table-header-bg: #ff512f;
+    --table-header-color: #ffffff;
+    --label-color: #ff512f;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 3 - Forest Green */
+/* ============================= */
+.theme-forest {
+    --gallery-border: #0b3d0b;
+    --product-active-gradient: linear-gradient(to top, #2ecc71 0%, #27ae60 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #0b3d0b;
+    --primary-bg: #0b3d0b;
+    --secondary-bg: #1c5f1c;
+    --tertiary-bg: #145214;
+    --main-gradient: linear-gradient(135deg, #0b3d0b, #1c5f1c, #145214);
+    --header-bg: #0b3d0b;
+    --body-bg: #e8f5e9;
+    --footer-bg: #0b3d0b;
+    --card-bg: #1c5f1c;
+    --card-text-color: #fff;
+    --btn-primary-bg: #0b3d0b;
+    --btn-danger-bg: #7f0000;
+    --table-header-bg: #0b3d0b;
+    --table-header-color: #ffffff;
+    --label-color: #0b3d0b;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 4 - Purple Dream */
+/* ============================= */
+.theme-purple {
+    --gallery-border: #6a0dad;
+    --product-active-gradient: linear-gradient(to top, #9b59b6 0%, #6a0dad 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #6a0dad;
+    --primary-bg: #6a0dad;
+    --secondary-bg: #9b59b6;
+    --tertiary-bg: #4a148c;
+    --main-gradient: linear-gradient(135deg, #6a0dad, #9b59b6, #4a148c);
+    --header-bg: #6a0dad;
+    --body-bg: #f3e5f5;
+    --footer-bg: #6a0dad;
+    --card-bg: #9b59b6;
+    --card-text-color: #fff;
+    --btn-primary-bg: #6a0dad;
+    --btn-danger-bg: #b71c1c;
+    --table-header-bg: #6a0dad;
+    --table-header-color: #ffffff;
+    --label-color: #6a0dad;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 5 - Classic Gray */
+/* ============================= */
+.theme-gray {
+    --gallery-border: #7f8c8d;
+    --product-active-gradient: linear-gradient(to top, #bdc3c7 0%, #7f8c8d 100%);
+    --product-active-color: #000000;
+    --heading-color: #7f8c8d;
+    --primary-bg: #2c3e50;
+    --secondary-bg: #7f8c8d;
+    --tertiary-bg: #95a5a6;
+    --main-gradient: linear-gradient(135deg, #7f8c8d, #95a5a6, #2c3e50);
+    --header-bg: #7f8c8d;
+    --body-bg: #ecf0f1;
+    --footer-bg: #7f8c8d;
+    --card-bg: #95a5a6;
+    --card-text-color: #000;
+    --btn-primary-bg: #7f8c8d;
+    --btn-danger-bg: #c0392b;
+    --table-header-bg: #7f8c8d;
+    --table-header-color: #ffffff;
+    --label-color: #7f8c8d;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 6 - Fire Red */
+/* ============================= */
+.theme-fire {
+    --gallery-border: #e53935;
+    --product-active-gradient: linear-gradient(to top, #ff6f60 0%, #e53935 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #e53935;
+    --primary-bg: #e53935;
+    --secondary-bg: #f85032;
+    --tertiary-bg: #ff6f60;
+    --main-gradient: linear-gradient(135deg, #e53935, #f85032, #ff6f60);
+    --header-bg: #e53935;
+    --body-bg: #fdecea;
+    --footer-bg: #e53935;
+    --card-bg: #ff6f60;
+    --card-text-color: #fff;
+    --btn-primary-bg: #e53935;
+    --btn-danger-bg: #b71c1c;
+    --table-header-bg: #e53935;
+    --table-header-color: #ffffff;
+    --label-color: #e53935;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 7 - Deep Blue */
+/* ============================= */
+.theme-deepblue {
+    --gallery-border: #1a237e;
+    --product-active-gradient: linear-gradient(to top, #3949ab 0%, #1a237e 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #1a237e;
+    --primary-bg: #1a237e;
+    --secondary-bg: #3949ab;
+    --tertiary-bg: #303f9f;
+    --main-gradient: linear-gradient(135deg, #1a237e, #3949ab, #303f9f);
+    --header-bg: #1a237e;
+    --body-bg: #e8eaf6;
+    --footer-bg: #1a237e;
+    --card-bg: #3949ab;
+    --card-text-color: #fff;
+    --btn-primary-bg: #1a237e;
+    --btn-danger-bg: #b71c1c;
+    --table-header-bg: #1a237e;
+    --table-header-color: #ffffff;
+    --label-color: #1a237e;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 8 - Teal Calm */
+/* ============================= */
+.theme-teal {
+    --gallery-border: #00695c;
+    --product-active-gradient: linear-gradient(to top, #26a69a 0%, #00695c 100%);
+    --product-active-color: #ffffff;
+    --heading-color: #00695c;
+    --primary-bg: #00695c;
+    --secondary-bg: #009688;
+    --tertiary-bg: #004d40;
+    --main-gradient: linear-gradient(135deg, #00695c, #009688, #004d40);
+    --header-bg: #00695c;
+    --body-bg: #e0f2f1;
+    --footer-bg: #00695c;
+    --card-bg: #009688;
+    --card-text-color: #ffffff;
+    --btn-primary-bg: #00695c;
+    --btn-danger-bg: #b71c1c;
+    --table-header-bg: #00695c;
+    --table-header-color: #ffffff;
+    --label-color: #00695c;
+    --form-label-color: #ffffff;
+}
+
+/* ============================= */
+/* THEME 9 - Golden Yellow */
+/* ============================= */
+.theme-gold {
+    --gallery-border: #f39c12;
+    --product-active-gradient: linear-gradient(to top, #f1c40f 0%, #f39c12 100%);
+    --product-active-color: #000000;
+    --heading-color: #ffffff;
+    --heading-color: #f39c12;
+    --primary-bg: #f39c12;
+    --secondary-bg: #f1c40f;
+    --tertiary-bg: #e67e22;
+    --main-gradient: linear-gradient(135deg, #f39c12, #f1c40f, #e67e22);
+    --header-bg: #f39c12;
+    --body-bg: #fff8e1;
+    --footer-bg: #f39c12;
+    --card-bg: #f1c40f;
+    --card-text-color: #000;
+    --btn-primary-bg: #f39c12;
+    --btn-danger-bg: #c0392b;
+    --table-header-bg: #f39c12;
+    --table-header-color: #000;
+    --label-color: #f39c12;
+    --form-label-color: #000;
+}
+
+/* ============================= */
+/* THEME 10 - Dark Mode */
+/* ============================= */
+.theme-dark {
+    --gallery-border: #1e1e1e;
+    --product-active-gradient: linear-gradient(to top, #424242 0%, #1e1e1e 100%);
+    --product-active-color: #ffffff;
+    --primary-bg: #121212;
+    --secondary-bg: #1e1e1e;
+    --tertiary-bg: #2c2c2c;
+    --main-gradient: linear-gradient(135deg, #121212, #1e1e1e, #2c2c2c);
+    --header-bg: #1e1e1e;
+    --body-bg: #121212;
+    --footer-bg: #1e1e1e;
+    --card-bg: #2c2c2c;
+    --card-text-color: #ffffff;
+    --btn-primary-bg: #1e1e1e;
+    --btn-danger-bg: #b71c1c;
+    --table-header-bg: #1e1e1e;
+    --table-header-color: #ffffff;
+    --label-color: #e0e0e0;
+    --form-label-color: #e0e0e0;
+}
