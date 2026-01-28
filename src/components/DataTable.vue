@@ -9,7 +9,7 @@
 					<div>
 						<b-container fluid>
 							<b-row class="mb-3">
-								<b-col sm="4">
+								<b-col sm="4" v-show="allowPages">
 									<b-form-group label="Per page" label-class="table_lable" label-for="per-page-select" label-cols-sm="6" label-cols-md="4" label-cols-lg="3" label-align-sm="right" label-size="sm" class="mb-0">
 										<b-form-select id="per-page-select" v-model="perPage" :options="pageOptions" size="sm"></b-form-select>
 									</b-form-group>
@@ -18,7 +18,7 @@
                     <!-------------------------------------------------------------------------------------- Download TXT File -------------------------------------------------------------------------------------->		
                     <b-button v-if="isTxtFile" variant="primary" @click="downloadNames" class="btn cus_btn"><font-awesome-icon :icon="['far', 'file-lines']" style="font-size: 15px; margin-right: 3px;" /> Export to txt</b-button>                  
                 </b-col>
-								<b-col sm="4">
+								<b-col sm="4" v-show="allowFilter">
 									<b-form-group label="Filter" label-for="filter-input" label-class="table_lable" label-cols-sm="3" label-align-sm="right" label-size="sm" class="mb-0">
 										<b-input-group size="sm">
 											<b-form-input id="filter-input" v-model="filter" type="search" placeholder="Type to Search"></b-form-input>
@@ -58,7 +58,7 @@
                   </main>
 								</template>                
 								<template #cell(actions)="row">
-									<b-button size="sm" @click="row.toggleDetails" class="btn cus_btn icon"> <font-awesome-icon :icon="['fas', (row.detailsShowing) ? 'eye-slash' : 'eye']" /></b-button>
+									<b-button v-show="allowEyeIcon" size="sm" @click="row.toggleDetails" class="btn cus_btn icon"> <font-awesome-icon :icon="['fas', (row.detailsShowing) ? 'eye-slash' : 'eye']" /></b-button>
 									<b-button size="sm" v-if="isEditOption" @click="btnEdit(row.item, row.index)" class="btn cus_btn icon ms-2 me-2"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> </b-button>
                   <b-button v-if="isDisable" size="sm" class="btn cus_btn icon btn-danger"  @click="btnRemove(row.item.id)"> <font-awesome-icon :icon="['fas', 'trash']" /></b-button>
               </template>
@@ -72,7 +72,7 @@
                   </b-card>
 								</template>
 							</b-table>
-							<b-row>
+							<b-row v-show="allowPagination">
 								<b-col lg="6" class="my-1"></b-col>
 								<!------------------------------------------------------------------------------------ Pagination ------------------------------------------------------------------------------------>
 								<b-col sm="7" md="6" class="my-1">
@@ -91,6 +91,8 @@
 import ModalService from "../modules/modals/services/modal.service";
 import BuildInfoEdit from "../views/modals/BuildInfoEdit.vue";
 import TaskInfoEdit from "../views/modals/TaskInfoEdit.vue";
+import VersionsInfoEdit from "../views/modals/VersionsInfoEdit.vue";
+import FirmwaresInfoEdit from "../views/modals/FirmwaresInfoEdit.vue";
 import ConfirmationMessage from "../views/modals/ConfirmationMessage.vue";
 import { eventBus } from "@/main";
 import { getLabelInfo, getFolderPath, getUserRole, getUser } from "@/assets/script/common";
@@ -101,7 +103,23 @@ export default {
   name: "DataTable",
   props: {
     txtTitle: String,
-    getFieldsInfo: Array
+    getFieldsInfo: Array,
+    allowPages: {
+      default: true,
+      type: Boolean
+    },
+    allowFilter: {
+      default: true,
+      type: Boolean
+    },
+    allowEyeIcon: {
+      default: true,
+      type: Boolean
+    },
+    allowPagination: {
+      default: true,
+      type: Boolean
+    },
   },
   data() {
     return {
@@ -148,7 +166,7 @@ export default {
       if(this.$route.path == "/tasks") {
         resp = ((this.isEdit != '0') && (this.isEdit != '1'));
       }
-      else if(this.$route.path == "/builds") {
+      else if(this.$route.path == "/builds" || this.$route.path == "/versions") {
         let getUserInfo = getUser();
         resp = ((getUserInfo.job_role == '4') || (this.isEdit == '2'));
       }
@@ -164,9 +182,12 @@ export default {
   mounted() {
     /* GET Build Information */
     this.totalRows = this.items.length;
-    eventBus.$on("getInfo", (idx, resp) => {
-      this.filter = null;
-      this.items = this.getItemsArr(idx, resp);
+    eventBus.$on("getInfo", (idx, resp, title) => {
+      if(this.txtTitle == title)
+      {
+        this.filter = null;
+        this.items = this.getItemsArr(idx, resp);
+      }
     });
   },
   destroyed() {
@@ -178,14 +199,38 @@ export default {
       this.infoModal.content = JSON.stringify(item, null, 2);
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
-    btnEdit: function (info, idx) {
-      let getRoute = this.$route.path;
-      localStorage.setItem("editInfo" + sessionStorage.getItem("access_token").toString(), JSON.stringify(info));
-      ModalService.open((getRoute == "/builds") ? BuildInfoEdit : (getRoute == "/tasks") ? TaskInfoEdit : "", [{ nameValues: info, idx: idx }]);
+    // btnEdit: function (info, idx) {
+    //   let getRoute = this.$route.path;
+    //   localStorage.setItem("editInfo" + sessionStorage.getItem("access_token").toString(), JSON.stringify(info));
+    //   let getEditScreen = (getRoute == "/builds") ? BuildInfoEdit : (getRoute == "/tasks") ? TaskInfoEdit : ((getRoute == "/versions") ? (this.txtTitle == "Firmware Versions Information") ? FirmwaresInfoEdit : (this.txtTitle == "Versions Information") ? VersionsInfoEdit : "" : "");
+    //   ModalService.open(getEditScreen, [{ nameValues: info, idx: idx }]);
+    // },
+    btnEdit(info, idx) {
+      const route = this.$route.path;
+      localStorage.setItem(`editInfo${sessionStorage.getItem("access_token")}`, JSON.stringify(info));
+
+      const EDIT_COMPONENT_MAP = {
+        "/builds": BuildInfoEdit,
+        "/tasks": TaskInfoEdit,
+        "/versions": this.getVersionEditComponent()
+      }
+
+      const component = EDIT_COMPONENT_MAP[route];
+      if (!component) return;
+      ModalService.open(component, [{ nameValues: info, idx }]);
+    },
+    getVersionEditComponent() {
+      if (this.txtTitle === "Firmware Versions Information") {
+        return FirmwaresInfoEdit
+      }
+      if (this.txtTitle === "Versions Information") {
+        return VersionsInfoEdit
+      }
+      return null
     },
     btnRemove: function(idx) {
-      let confMsg = (this.$route.path == "/tasks") ? "task?" : "build?"; 
-      ModalService.open(ConfirmationMessage, [{ msgTitle: "", msgInfo: "Are you sure you want to remove " + confMsg.toString(), nameValues:[idx] }]);
+      let confMsg = (this.$route.path == "/tasks") ? "task?" : (this.$route.path == "/builds") ? "build?" : (this.$route.path == "/versions") ? "version?" : ""; 
+      ModalService.open(ConfirmationMessage, [{ msgTitle: "", msgInfo: "Are you sure you want to remove " + confMsg.toString(), nameValues:[idx, this.txtTitle] }]);
     },
     resetInfoModal() {
       this.infoModal.title = "";

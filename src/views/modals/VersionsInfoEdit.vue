@@ -1,7 +1,7 @@
 <template>
 	<Modal>
 		<ModalHeader>
-			<h6 class="modal-title"><strong>Update Build Information</strong></h6>
+			<h6 class="modal-title"><strong>Update Version Information</strong></h6>
 			<div>
 				<button class="btn cus_btn" @click="modalDismiss">
 					<font-awesome-icon :icon="['fas', 'xmark']" /> </button>
@@ -11,61 +11,28 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="mb-3">
-						<label for="exampleInputEmail1" class="form-label">Version</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="getInfo.version" @change="handleChange($event, 'version')"> </div>
+						<label for="exampleInputopti_server" class="form-label">Opti-Server</label>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputopti_server" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.opti_server" @change="handleChange($event, 'opti_server')"> </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="mb-3">
-						<label for="exampleInputBuildName" class="form-label">Build Name</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputBuildName" aria-describedby="emailHelp" v-model="getInfo.build_name" @change="handleChange($event, 'build_name')"> </div>
-				</div>
-				<div class="col-sm-6">
-					<div class="mb-3">
-						<label for="exampleInputBuildType" class="form-label">Build Type</label>
-						<select class="form-select" aria-label="Default select example" :disabled="isDisable" v-model="getInfo.build_type" @change="handleChange($event, 'build_type')">
-							<option value="" selected>-- select build type --</option>
-							<option value="0">Test Build</option>
-							<option value="1">Release Build</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="mb-3">
-						<label for="exampleInputBuildOption" class="form-label">Build Option</label>
-						<select class="form-select" aria-label="Default select example" :disabled="isDisable" v-model="getInfo.build_option" @change="handleChange($event, 'build_option')">
-							<option value="" selected>-- select build option --</option>
-							<option value="0">Web</option>
-							<option value="1">Mobile</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="mb-3">
-						<label for="exampleInputBuildPath" class="form-label"> Build Path</label>
-						<input type="text" class="form-control" id="exampleInputBuildPath" :disabled="isDisable" aria-describedby="emailHelp" v-model="getInfo.build_path" @change="handleChange($event, 'build_path')"> </div>
-				</div>				
-				<div class="col-sm-6">
-					<div class="mb-3">
-						<label for="exampleInputFixedList" class="form-label">Fixed List</label>
-						<textarea type="text" class="form-control" id="exampleInputFixedList" :disabled="isDisable" aria-describedby="emailHelp" v-model="getInfo.fixed_list" @change="handleChange($event, 'fixed_list')"></textarea>
-					</div>
+						<label for="exampleInputcada" class="form-label">CADA</label>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputcada" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.cada" @change="handleChange($event, 'cada')"> </div>
 				</div>
         <div class="col-sm-6">
-          <div class="mb-3">
-            <label for="exampleInputStatus" class="form-label">Status</label>
-            <select class="form-select" aria-label="Default select example" v-model="getInfo.build_status" @change="handleChange($event, 'build_status')">
-              <option value="" selected>-- select status --</option>
-              <option value="0">In Progress</option>
-              <option value="1">Fail</option>
-              <option value="2">Success</option>
-            </select>
-          </div>
-        </div>
+					<div class="mb-3">
+						<label for="exampleInputamp_android" class="form-label">Amplifier Android</label>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputamp_android" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.amp_android" @change="handleChange($event, 'amp_android')"> </div>
+				</div>
+				<div class="col-sm-6">
+					<div class="mb-3">
+						<label for="exampleInputamp_ios" class="form-label">Amplifier iOS</label>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputamp_ios" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.amp_ios" @change="handleChange($event, 'amp_ios')"> </div>
+				</div>
         <div class="col-sm-6">
 					<div class="mb-3">
-						<label for="exampleInputRemark" class="form-label">Remark</label>
-						<textarea type="text" class="form-control" id="exampleInputRemark" aria-describedby="emailHelp" v-model="getInfo.remark" @change="handleChange($event, 'remark')"></textarea>
-					</div>
+						<label for="exampleInputmsam" class="form-label">MSAM</label>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputmsam" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.msam" @change="handleChange($event, 'msam')"> </div>
 				</div>
 			</div>
 		</ModalBody>
@@ -87,10 +54,10 @@ import ModalFooter from "../../modules/modals/components/ModalFooter.vue";
 import ModalMixin from "../../modules/modals/mixins/ModalMixin";
 import { chgDataFormat, getSelIdxInfo, getUserRole } from "@/assets/script/common";
 import { eventBus } from "../../main";
-import {getLabelInfo, getOrgInfo, fetchAPIInfo, getUser } from "@/assets/script/common";
+import {getLabelInfo, getOrgInfo, fetchAPIInfo } from "@/assets/script/common";
 
 export default {
-  name: "BuildInfoEdit",
+  name: "VersionsInfoEdit",
   components: { Modal, ModalHeader, ModalBody, ModalFooter },
   data() {
     return {
@@ -108,6 +75,7 @@ export default {
   created() {
     this.getInfo = {};
     this.getInfo = this.$props["nameValues"];
+    console.log("this.getInfo", this.getInfo);    
   },
   computed: {
     isDisable: function() {
@@ -123,15 +91,13 @@ export default {
       this.dismiss("Modal dismissed");
     },
     handleChange: function (event, key) {
+      console.log(event, key);      
       this.chgData[key] = { key: key, value: event.target.value };
     },
     /* -------------------------------------  Update Changed Build Information --------------------------------- */
     async updateBuild() {
       let chgDataInfo = {};
       let orgInfo = getSelIdxInfo("GET");
-      
-      let userInfo = getUser();
-      this.chgData["updated_by"] = { key: "updated_by", value: userInfo["username"] };
 
       for (let chgInfo in this.chgData) {
         if (this.chgData[chgInfo].value.trim() == "") {
@@ -152,7 +118,7 @@ export default {
         const response = await fetchAPIInfo("post", "/updatebuild?id=" +  this.$props["nameValues"]["id"] + "&data=" + encodeURIComponent(JSON.stringify(chgArr)));
         if (response.status == 200) {
           this.modalDismiss();
-          eventBus.$emit("evtGetBuildInfo");
+          eventBus.$emit("evtGetVersionInfo");
         } else {
           ModalService.open(InformationMessage, [{ msgTitle: "Information Message", msgInfo: response.data }]);
         }

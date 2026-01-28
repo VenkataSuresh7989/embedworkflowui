@@ -18,6 +18,7 @@
 							</template>						
 							<b-dropdown-item :active="$route.path === '/tasks'" @click="getRoute('/tasks')">Tasks</b-dropdown-item>
 							<b-dropdown-item :active="$route.path === '/builds'" @click="getRoute('/builds')">Builds & Releases</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/versions'" @click="getRoute('/versions')">Versions</b-dropdown-item>
 							<b-dropdown-item :active="$route.path === '/employee'" @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
 						</b-nav-item-dropdown>
 

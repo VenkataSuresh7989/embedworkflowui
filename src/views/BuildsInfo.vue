@@ -163,7 +163,7 @@ export default {
             let resp = await fetchAPIInfo('get', '/getallbuildinfo?prod_idx=' + product_idx['prod_idx']);
             if(resp.status == 200) {
                 localStorage.setItem("build_info" + sessionStorage.getItem("access_token").toString(),JSON.stringify(resp.data));
-                eventBus.$emit("getInfo", "build", resp.data);
+                eventBus.$emit("getInfo", "build", resp.data, "Build Information");
             }
         },
         /* ------------------------------------------  Create New Build ----------------------------------------*/        

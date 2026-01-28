@@ -5,6 +5,7 @@ import LoginScreen from '../components/LoginScreen.vue';
 import PageNotFound from '../components/PageNotFound.vue';
 import Tasks from '../views/TasksInfo.vue';
 import Builds from '../views/BuildsInfo.vue';
+import Versions from '../views/VersionsInfo.vue';
 import Products from '../views/ProductsInfo.vue';
 import Employee from '../views/EmployeeInfo.vue';
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/builds',
     name: 'BuildsInfo',
     component: Builds
+  },
+  {
+    path: '/versions',
+    name: 'VersionsInfo',
+    component: Versions
   },
   {
     path: '/employee',

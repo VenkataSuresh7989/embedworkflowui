@@ -112,7 +112,7 @@ export default {
     methods: {
 		/* -------------------------------------------  Close Modal ----------------------------------------------- */
         modalDismiss: function () {
-            eventBus.$emit("getInfo", "task", getOrgInfo("task_info"));
+            eventBus.$emit("getInfo", "task", getOrgInfo("task_info"), "Task Information");
 			getSelIdxInfo("DELETE");
             this.dismiss("Modal dismissed");
         },

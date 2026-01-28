@@ -61,6 +61,10 @@ export default {
         this.dismiss("Modal dismissed");
         eventBus.$emit("isRemoveBuild", this.nameValues[0]);
       }
+      else if (this.msgInfo == "Are you sure you want to remove version?") {
+        this.dismiss("Modal dismissed");
+        eventBus.$emit("isRemoveVersion", this.nameValues);
+      }
       else if (this.msgInfo == "Are you sure you want to remove selected user?") {
         this.dismiss("Modal dismissed");
         eventBus.$emit("isRemoveUser", this.nameValues[0]);

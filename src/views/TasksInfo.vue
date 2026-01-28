@@ -223,7 +223,7 @@ export default {
 					resp = await fetchAPIInfo('get', '/gettaskinfo?emp_id=' + product_idx['emp_id'] + '&assign_by=' + userInfo['username'] + '&prod_idx=' + product_idx['prod_idx']);
 				if(resp) {
 					localStorage.setItem("task_info" + sessionStorage.getItem("access_token").toString(),JSON.stringify(resp));
-					eventBus.$emit("getInfo", "task", resp);
+					eventBus.$emit("getInfo", "task", resp, "Task Information");
 				}
 			}
         },
