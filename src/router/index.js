@@ -8,6 +8,7 @@ import Builds from '../views/BuildsInfo.vue';
 import Versions from '../views/VersionsInfo.vue';
 import Products from '../views/ProductsInfo.vue';
 import Employee from '../views/EmployeeInfo.vue';
+import MsamTool from '../views/MsamTool.vue';
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,11 @@ const routes = [
     path: '/employee',
     name: 'EmployeeInfo',
     component: Employee
+  },
+  {
+    path: '/msamtool',
+    name: 'MsamTool',
+    component: MsamTool
   },
   {
     path: '*',

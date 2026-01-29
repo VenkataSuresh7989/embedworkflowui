@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="header">
 		<b-navbar toggleable="lg" type="dark" class="header">
 			<!-- <img :src="$store.state.getImg" class="header_logo"> -->
 			<b-navbar-brand href="#">Embed Technologies</b-navbar-brand>
@@ -11,7 +11,8 @@
 						<b-nav-item @click="getRoute('/')" :class="{ show: true }" :active="($route.path == '/') ? true : false"><font-awesome-icon :icon="['fas', 'house']"/> Home</b-nav-item>
 						<b-nav-item href="#" @click="btnRefresh" :class="{ show: true }">
 							<font-awesome-icon :icon="['fas', 'arrows-rotate']" /> Refresh
-						</b-nav-item>					
+						</b-nav-item>		
+									
 						<b-nav-item-dropdown text="Options" right :class="{ show: true }"  :active="isOptionsActive">
 							<template #button-content>
 								<font-awesome-icon :icon="['fas', 'gear']" /> Options
@@ -22,25 +23,12 @@
 							<b-dropdown-item :active="$route.path === '/employee'" @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
 						</b-nav-item-dropdown>
 
-						
-						<!-- <b-nav-item-dropdown text="Workflow" right :class="{ show: true }"  :active="isOptionsActive">
+						<b-nav-item-dropdown text="Tools" right :class="{ show: true }"  :active="isToolActive">
 							<template #button-content>
-								<font-awesome-icon :icon="['fas', 'sitemap']" /> Workflow
+								<font-awesome-icon :icon="['fas', 'sitemap']" /> Tools
 							</template>						
-							<b-dropdown-item @click="getRoute('/tasks')">Tasks</b-dropdown-item>
-							<b-dropdown-item @click="getRoute('/builds')">Builds & Releases</b-dropdown-item>
-							<b-dropdown-item @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/msamtool'" @click="getRoute('/msamtool')">MSAM</b-dropdown-item>
 						</b-nav-item-dropdown>
-						<b-nav-item-dropdown text="Docs" right :class="{ show: true }"  :active="isOptionsActive">
-							<template #button-content>
-								<font-awesome-icon :icon="['fas', 'file']" /> Docs
-							</template>						
-							<b-dropdown-item @click="getRoute('/tasks')">Tasks</b-dropdown-item>
-							<b-dropdown-item @click="getRoute('/builds')">Builds & Releases</b-dropdown-item>
-							<b-dropdown-item @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
-						</b-nav-item-dropdown> -->
-
-
 
 						<b-nav-item-dropdown text="Themes" right :class="{ show: true }">
 							<b-dropdown-item v-for="theme in themes" :key="theme.value" @click="changeTheme(theme.value)" :active="theme.value === currentTheme">
@@ -91,6 +79,9 @@ export default {
   computed: {
 	isOptionsActive() {
         return ['/tasks', '/builds', '/employee'].includes(this.$route.path);
+    },
+	isToolActive() {
+        return ['/msamtool'].includes(this.$route.path);
     },
     isDisable: function() {
       let roleIdx = getUserRole();
