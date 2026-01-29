@@ -12,17 +12,17 @@
 				<div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputEmail1" class="form-label">XPR</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="getInfo.xpr" @change="handleChange($event, 'xpr')"> </div>
+						<input type="text" class="form-control" maxlength="5" :disabled="isDisable" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="getInfo.xpr" @change="handleChange($event, 'xpr')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputBuildName" class="form-label">MB-BLE</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputBuildName" aria-describedby="emailHelp" v-model="getInfo.mb_ble" @change="handleChange($event, 'mb_ble')"> </div>
+						<input type="text" class="form-control" maxlength="5" :disabled="isDisable" id="exampleInputBuildName" aria-describedby="emailHelp" v-model="getInfo.mb_ble" @change="handleChange($event, 'mb_ble')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputEmail1" class="form-label">Flex Max</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="getInfo.flex_max" @change="handleChange($event, 'flex_max')"> </div>
+						<input type="text" class="form-control" maxlength="5" :disabled="isDisable" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="getInfo.flex_max" @change="handleChange($event, 'flex_max')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
 			</div>
 		</ModalBody>
@@ -65,7 +65,7 @@ export default {
   created() {
     this.getInfo = {};
     this.getInfo = this.$props["nameValues"];
-    console.log("this.getInfo", this.getInfo);    
+    console.log("FW");
   },
   computed: {
     isDisable: function() {
@@ -76,7 +76,7 @@ export default {
   methods: {
     /* -------------------------------------------  Close Modal ----------------------------------------------- */
     modalDismiss: function () {
-      eventBus.$emit("getInfo", "build", getOrgInfo("build_info"), "Build Information");
+      eventBus.$emit("getInfo", "fw", getOrgInfo("versions_info")?.["tbl_fw_info"], "Firmware Versions Information");
       getSelIdxInfo("DELETE");
       this.dismiss("Modal dismissed");
     },
@@ -100,11 +100,11 @@ export default {
       }
       let chgArr = chgDataFormat(chgDataInfo);
       
-      if (chgArr.length == 1 && (Object.keys(this.chgData).length == 1)) {
+      if (chgArr.length == 0) {
         this.chgData = {};
         this.modalDismiss();
       } else {
-        const response = await fetchAPIInfo("post", "/updatebuild?id=" +  this.$props["nameValues"]["id"] + "&data=" + encodeURIComponent(JSON.stringify(chgArr)));
+        const response = await fetchAPIInfo("put", "/updatefw?id=" +  this.$props["nameValues"]["id"] + "&data=" + JSON.stringify(chgArr));
         if (response.status == 200) {
           this.modalDismiss();
           eventBus.$emit("evtGetVersionInfo");

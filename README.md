@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+# User Roles    :	['SuperAdmin','Admin','Manager','Employee']	['0','1','2','3']
+# Job Roles 	:	['SoftwareEngineer','FullStackDeveloper','FrontEndDeveloper','BackEndDeveloper','Tester','UI Designer'] ['0','1','2','3','4','5']

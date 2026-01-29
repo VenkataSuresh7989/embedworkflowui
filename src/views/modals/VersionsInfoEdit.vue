@@ -12,27 +12,27 @@
 				<div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputopti_server" class="form-label">Opti-Server</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputopti_server" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.opti_server" @change="handleChange($event, 'opti_server')"> </div>
-				</div>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputopti_server" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.opti_server" @change="handleChange($event, 'opti_server')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
+          </div>
 				<div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputcada" class="form-label">CADA</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputcada" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.cada" @change="handleChange($event, 'cada')"> </div>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputcada" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.cada" @change="handleChange($event, 'cada')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
         <div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputamp_android" class="form-label">Amplifier Android</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputamp_android" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.amp_android" @change="handleChange($event, 'amp_android')"> </div>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputamp_android" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.amp_android" @change="handleChange($event, 'amp_android')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputamp_ios" class="form-label">Amplifier iOS</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputamp_ios" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.amp_ios" @change="handleChange($event, 'amp_ios')"> </div>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputamp_ios" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.amp_ios" @change="handleChange($event, 'amp_ios')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
         <div class="col-sm-6">
 					<div class="mb-3">
 						<label for="exampleInputmsam" class="form-label">MSAM</label>
-						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputmsam" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.msam" @change="handleChange($event, 'msam')"> </div>
+						<input type="text" class="form-control" :disabled="isDisable" id="exampleInputmsam" aria-describedby="emailHelp" maxlength="10" inputmode="decimal" v-model="getInfo.msam" @change="handleChange($event, 'msam')" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46"> </div>
 				</div>
 			</div>
 		</ModalBody>
@@ -75,7 +75,7 @@ export default {
   created() {
     this.getInfo = {};
     this.getInfo = this.$props["nameValues"];
-    console.log("this.getInfo", this.getInfo);    
+    console.log("Version");    
   },
   computed: {
     isDisable: function() {
@@ -86,7 +86,7 @@ export default {
   methods: {
     /* -------------------------------------------  Close Modal ----------------------------------------------- */
     modalDismiss: function () {
-      eventBus.$emit("getInfo", "build", getOrgInfo("build_info"), "Build Information");
+      eventBus.$emit("getInfo", "versions", getOrgInfo("versions_info")?.["tbl_module_info"], "Versions Information");
       getSelIdxInfo("DELETE");
       this.dismiss("Modal dismissed");
     },
@@ -111,11 +111,11 @@ export default {
       }
       let chgArr = chgDataFormat(chgDataInfo);
       
-      if (chgArr.length == 1 && (Object.keys(this.chgData).length == 1)) {
+      if (chgArr.length == 0) {
         this.chgData = {};
         this.modalDismiss();
       } else {
-        const response = await fetchAPIInfo("post", "/updatebuild?id=" +  this.$props["nameValues"]["id"] + "&data=" + encodeURIComponent(JSON.stringify(chgArr)));
+        const response = await fetchAPIInfo("put", "/updatemodule?id=" +  this.$props["nameValues"]["id"] + "&data=" + JSON.stringify(chgArr));
         if (response.status == 200) {
           this.modalDismiss();
           eventBus.$emit("evtGetVersionInfo");

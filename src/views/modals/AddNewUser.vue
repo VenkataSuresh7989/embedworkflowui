@@ -174,7 +174,7 @@ export default {
                 else {
                     let errMsg = "";
                     if(textFieldArr[chgInfo] == "emp_id"){
-                        if(this[textFieldArr[chgInfo]].trim().length != 8){
+                        if(this[textFieldArr[chgInfo]].trim().length < 8){
                             errMsg = "Emp Id length must be 8.";
                         }
                     }

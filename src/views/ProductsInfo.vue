@@ -236,8 +236,8 @@ export default {
 		if(resp.status == 200) {
 			localStorage.setItem("product_idx" + sessionStorage.getItem("access_token").toString(),JSON.stringify(resp.data[0]));
 			if(resp.status == 200) {
-				this.getProdSel = resp.data[0]["prod_idx"];
-				this.ddlProdSel = resp.data[0]["prod_idx"];
+				this.getProdSel = resp?.data[0]?.["prod_idx"];
+				this.ddlProdSel = resp?.data[0]?.["prod_idx"];
 			}
 		}
 	},

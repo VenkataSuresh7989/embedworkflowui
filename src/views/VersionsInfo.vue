@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import { fetchAPIInfo } from "@/assets/script/common";
+import { fetchAPIInfo, getUser } from "@/assets/script/common";
 import DataTable from '../components/DataTable.vue';
 import { eventBus } from '@/main';
 export default {
@@ -34,6 +34,14 @@ export default {
     },
     created() {
         this.getVersionsInfo();
+        /* Based on user role(except Manager) hide the action column. */
+        let getUserInfo = getUser();
+        let resp = (getUserInfo.user_role != '2');
+        if(resp)
+        {
+            this.getVerFieldsInfo = this.getVerFieldsInfo.filter(f => f.key !== "actions");
+            this.getFWFieldsInfo = this.getFWFieldsInfo.filter(f => f.key !== "actions");
+        }
     },
     mounted() {
         eventBus.$on("btnRefresh",()=> {
@@ -49,7 +57,6 @@ export default {
     destroyed() {
         eventBus.$off("btnRefresh");
         eventBus.$off("evtGetVersionInfo");
-        eventBus.$off("getInfo");
         eventBus.$off("isRemoveVersion");
     },
     methods: {
@@ -57,6 +64,7 @@ export default {
         async getVersionsInfo() {
             let resp = await fetchAPIInfo('get', '/getversionsinfo');
             if(resp.status == 200) {
+                localStorage.setItem("versions_info" + sessionStorage.getItem("access_token").toString(),JSON.stringify(resp.data));
                 eventBus.$emit("getInfo", "versions", resp?.data?.["tbl_module_info"], "Versions Information");
                 eventBus.$emit("getInfo", "versions", resp?.data?.["tbl_fw_info"], "Firmware Versions Information");
             }
