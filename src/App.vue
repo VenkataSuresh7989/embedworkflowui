@@ -1,8 +1,8 @@
 <template>
   <div>
     <Navbar v-if="getUser" />    
-    <div class="bodyPart">
-      <router-view />
+    <div class="" :class="getUser ? 'bodyPart' : 'bodyPart full'">
+      <router-view />      
       <ModalRoot />
       <ModalChild />
       <ModalSubChild />

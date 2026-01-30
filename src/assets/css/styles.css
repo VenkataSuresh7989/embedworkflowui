@@ -66,6 +66,7 @@ form label {
 	margin-top: 50px;
 	margin-bottom: 52px;
 }
+.bodyPart.full{margin-top: 0; margin-bottom: 0;}
 /* footer {position: fixed;bottom: 0;width: 100%;text-align: center;background: #0c768a;color: #fff;padding: 5px;font-size: 15px;} */
 footer {
 	position: fixed;
