@@ -1,7 +1,72 @@
 <template>
 	<div>
 		<!-- MSAM Tool Container -->
-		<div class="container   pt-3">
+		<div class="container pt-3">
+      <div class="text-center mb-4">
+        <button class="btn cus_btn" @click="btnNewFrame"><font-awesome-icon :icon="['fas', 'plus']" /> Create New Frame</button>
+      </div>
+
+      <div class="row" v-if="isCheck">
+        <div class="col-sm-5">
+          <form>
+            <div class="cardWrap">
+              <h6 class="cardHeading mb-3">
+                <font-awesome-icon :icon="['fas', 'plus']" />
+                Add Frame
+              </h6>              
+              <div class="row mb-3 align-items-center">
+                <div class="col-md-12">
+                  <label class="form-label"> Enter Frame Name </label>
+                  <input type="text" class="form-control" />
+                </div>                
+                <div class="col-md-12 text-center mt-3">
+                  <button type="button" class="btn cus_btn">Add Frame </button>
+                </div>
+              </div>              
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-7">
+            <form >
+              <div class="cardWrap">
+                <h6 class="cardHeading mb-3">
+                  <font-awesome-icon :icon="['fas', 'plus']" />
+                  Add Field
+                </h6>              
+                <div class="row mb-3 align-items-center">
+                  <div class="col-md-6 mb-2">                    
+                    <label  class="form-label">Select Frame</label>
+                    <select class="form-select" aria-label="Default select example">
+                      <option value="" selected disabled>-- select frame --</option>
+                      <option value="1">Frame 1</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-2">                    
+                    <label  class="form-label">Enter Label</label>
+                    <input type="text" class="form-control" id="exampleInputLabel" maxlength="8" />
+                  </div>                
+                  <div class="col-md-6 mb-2">
+                    <label  class="form-label">Enter Value</label>
+                    <input type="text" class="form-control" id="exampleInputValue" maxlength="8" />
+                  </div>  
+                  <div class="col-md-6 mb-2">                    
+                    <label  class="form-label">Copy Required?</label>
+                    <select class="form-select" aria-label="Default select example" v-model="is_Copy">
+                      <option value="" selected disabled>-- select frame --</option>
+                      <option value="1">Yes</option>
+                      <option value="2">No</option>
+                    </select>
+                  </div>              
+                  <div class="col-md-12 text-center mt-3">
+                    <button type="button" class="btn cus_btn">Add Field</button>
+                  </div>
+                </div>
+                
+              </div>
+            </form>
+        </div>
+      </div>
+
 			<form>
 				<div class="row mb-3">
 					<div class="col-12 text-center">
@@ -37,6 +102,8 @@ export default {
   name: "MsamTool",
   data() {
     return {
+      isCheck: false,
+      is_Copy:"1",
       tooldata: {
         "MSAM Keys": [
           { label: "name", value: "Device Name", isCopy: false },
@@ -106,6 +173,9 @@ export default {
     };
   },
   methods: {
+    btnNewFrame: function() {
+			this.isCheck = !this.isCheck;
+		},
     copyText(value) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(value);
