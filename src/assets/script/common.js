@@ -1,8 +1,5 @@
 import { eventBus } from '@/main';
 import axios from 'axios';
-import ModalService from "../../modules/modals/services/modalchild.service";
-import InformationMessage from "../../views/modals/InformationMessage.vue";
-
 
 /* ---------------------------------------------------------------- COMMON CRUD FUNCTION ---------------------------------------------------------------- */
 
@@ -26,11 +23,6 @@ export async function fetchAPIInfo(method, getUrl, data = {}, isFormData = false
     if(error.response.data.detail == "Session expired.") {
       eventBus.$emit("isSignout");
     }
-    if(error.response.data.detail == "Password mismatch." || error.response.data.detail == "User not found.")
-    {
-      ModalService.open(InformationMessage, [{msgTitle: "Information Message", msgInfo: error.response.data.detail}]);
-    }
-    console.error("API request error:", error);
     throw error;
   }
 }
