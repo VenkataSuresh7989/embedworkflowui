@@ -14,6 +14,7 @@
     --body-bg: #f5f8f9; 
     --footer-bg: #0c768a;
     --card-bg: #2ba7ba;
+    --subcard-bg:#58b8c6;
     --card-text-color: #fff;
     --btn-primary-bg: #0c768a;
     --btn-danger-bg: #dc3545;
@@ -22,7 +23,9 @@
     --label-color: #0c768a;
     --form-label-color: #ffffff;    
     --boxshadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+    --boxshadow2: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --btn-text-color:#fff;
+}   
 
 /* ============================= */
 /* THEME 1 - Ocean Blue */
@@ -40,6 +43,7 @@
     --body-bg: #eaf2f8;
     --footer-bg: #2980b9;
     --card-bg: #3498db;
+    --subcard-bg:#5ba8db;
     --card-text-color: #fff;
     --btn-primary-bg: #2980b9;
     --btn-danger-bg: #c0392b;
@@ -65,6 +69,7 @@
     --body-bg: #fff2f0;
     --footer-bg: #ff512f;
     --card-bg: #ff6e7f;
+    --subcard-bg:#d64e34;
     --card-text-color: #fff;
     --btn-primary-bg: #ff512f;
     --btn-danger-bg: #c0392b;
@@ -90,6 +95,7 @@
     --body-bg: #e8f5e9;
     --footer-bg: #0b3d0b;
     --card-bg: #1c5f1c;
+    --subcard-bg:#377937;
     --card-text-color: #fff;
     --btn-primary-bg: #0b3d0b;
     --btn-danger-bg: #7f0000;
@@ -115,6 +121,7 @@
     --body-bg: #f3e5f5;
     --footer-bg: #6a0dad;
     --card-bg: #9b59b6;
+    --subcard-bg:#b65fd9;
     --card-text-color: #fff;
     --btn-primary-bg: #6a0dad;
     --btn-danger-bg: #b71c1c;
@@ -140,6 +147,7 @@
     --body-bg: #ecf0f1;
     --footer-bg: #7f8c8d;
     --card-bg: #95a5a6;
+    --subcard-bg:#b5c2c3;
     --card-text-color: #000;
     --btn-primary-bg: #7f8c8d;
     --btn-danger-bg: #c0392b;
@@ -165,6 +173,7 @@
     --body-bg: #fdecea;
     --footer-bg: #e53935;
     --card-bg: #ff6f60;
+    --subcard-bg:#e16558;
     --card-text-color: #fff;
     --btn-primary-bg: #e53935;
     --btn-danger-bg: #b71c1c;
@@ -190,6 +199,7 @@
     --body-bg: #e8eaf6;
     --footer-bg: #1a237e;
     --card-bg: #3949ab;
+    --subcard-bg:#5060c3;
     --card-text-color: #fff;
     --btn-primary-bg: #1a237e;
     --btn-danger-bg: #b71c1c;
@@ -215,6 +225,7 @@
     --body-bg: #e0f2f1;
     --footer-bg: #00695c;
     --card-bg: #009688;
+    --subcard-bg:#08ae9e;
     --card-text-color: #ffffff;
     --btn-primary-bg: #00695c;
     --btn-danger-bg: #b71c1c;
@@ -241,6 +252,7 @@
     --body-bg: #fff8e1;
     --footer-bg: #f39c12;
     --card-bg: #f1c40f;
+    --subcard-bg:#e0ba25;
     --card-text-color: #000;
     --btn-primary-bg: #f39c12;
     --btn-danger-bg: #c0392b;
@@ -265,6 +277,7 @@
     --body-bg: #121212;
     --footer-bg: #1e1e1e;
     --card-bg: #2c2c2c;
+    --subcard-bg:#494846;
     --card-text-color: #ffffff;
     --btn-primary-bg: #1e1e1e;
     --btn-danger-bg: #b71c1c;

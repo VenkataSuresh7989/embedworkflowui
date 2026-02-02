@@ -26,6 +26,10 @@ ul{margin-bottom: 0; list-style-type: none;padding-left: 0;}
 	background: var(--main-gradient);
 }
 
+.dropdown-item.active, .dropdown-item:active {
+	background-color: var(--card-bg);
+}
+
 .embed_logo {
 	border-radius: 100px !important;
 	width: 200px;
@@ -47,7 +51,13 @@ ul{margin-bottom: 0; list-style-type: none;padding-left: 0;}
 	color: var(--card-text-color);
 }
 
-
+.flexWrap{ display: flex; flex-wrap: wrap; gap: 10px;}
+.flexWrap .split-box{ width: 65px; height: 65px;
+	 border-radius: 5px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	text-align: center; padding: 8px 5px; 
+	background-color: var(--subcard-bg);}
+.flexWrap .split-box span{display: block;}
+.flexWrap .split-box span.index{font-weight: 600;}
 form {    
     border-radius: 8px;	
 }
@@ -63,8 +73,9 @@ form label {
 .bodyPart{
 	/* background-color:#f5f8f9; */
 	background-color: var(--body-bg);
-	margin-top: 50px;
-	margin-bottom: 52px;
+	margin-top: 50px;	
+	overflow-x: hidden;
+	height: calc(100vh - 84px);
 }
 .bodyPart.full{margin-top: 0; margin-bottom: 0;}
 /* footer {position: fixed;bottom: 0;width: 100%;text-align: center;background: #0c768a;color: #fff;padding: 5px;font-size: 15px;} */
@@ -91,6 +102,9 @@ footer {
 	border-radius: 5px;
 	margin-bottom: 10px;
 
+}
+.cardWrap.subCard{
+	background: var(--subcard-bg);
 }
 .cardHeading{
 	font-size:22px;
@@ -169,6 +183,7 @@ img {
 .cus_btn.btn-danger, .cus_btn.btn-danger:hover, .cus_btn.btn-danger:focus, .cus_btn.btn-danger:active{
 	/* background-color:#dc3545 !important; */
 	background-color: var(--btn-danger-bg) !important;
+	color: #fff;
 }
 .cus_btn.btn:disabled{color: #fff;background-color: #9d9d9d;}
 /* .cus_btn:hover{background: #0c768a; color: #fff;} */
@@ -415,3 +430,37 @@ color: #d7d7d7;font-size: 30px;opacity: 0;transition: all ease .3s;}
 	  transform: translateX(-100%)
 	}
   }
+	.quickPanel{
+		position: fixed; 
+		right: 0px;
+		text-align: right;
+		top: 70px;
+	}
+	.quickPanel .quickPanelBtn{ font-size: 18px;padding: 3px 10px;overflow: hidden;}
+  	.toggleWindow{
+		margin-top:5px;
+		width: 550px;		
+		background-color: var(--header-bg);
+		transform: translateX(100%);
+		transition: all ease .3s;
+		text-align: left;
+		padding: 10px;
+		height: 100%;
+		height: calc(100vh - 155px);
+		overflow-x: hidden;
+	}
+  	.toggleWindow.isOpen {
+		transition: all ease .3s;
+		transform: translateX(0);
+		
+		box-shadow: var(--boxshadow2);
+	}
+  	.toggleWindow{
+		overflow-y: auto;
+	}
+
+	.accordion-item	.accordion-header button{display: block; padding: 10px 15px; font-weight: 500; background-color: var(--card-bg); color: var(--card-text-color); }
+	
+	.accordion-item	.accordion-header button span{float: right; transform: rotate(180deg); transition: all ease .3s;}
+	.accordion-item	.accordion-header button.collapsed span{transform: rotate(0deg);transition: all ease .3s;}
+	.accordion-item	.accordion-header button::after{display: none;}

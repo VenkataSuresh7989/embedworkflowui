@@ -75,7 +75,7 @@
 				</div>
 				<div class="cardWrap" v-for="(items, title) in tooldata" :key="title">
 					<h6 class="cardHeading mb-3">
-            <font-awesome-icon :icon="['fas', 'globe']" /> {{ title }}
+            <font-awesome-icon :icon="['fas', 'arrows-to-dot']" /> {{ title }}
           </h6>
 					<div class="ps-5">
 						<div class="row mb-3 align-items-center" v-for="item in items" :key="item.id">
@@ -186,7 +186,7 @@ export default {
             value: item.value,
             isCopy: Boolean(item.is_copy),
           }));
-        });
+        });  
       } catch (err) {
         console.error("Error fetching MSAM tool info", err);
       }
