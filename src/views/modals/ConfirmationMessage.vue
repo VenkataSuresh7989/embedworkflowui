@@ -68,7 +68,11 @@ export default {
       else if (this.msgInfo == "Are you sure you want to remove selected user?") {
         this.dismiss("Modal dismissed");
         eventBus.$emit("isRemoveUser", this.nameValues[0]);
-      }      
+      }
+      else if (this.msgInfo == "Are you sure you want to remove selected item?" || this.msgInfo == "Are you sure you want to remove selected panel?") {
+        this.dismiss("Modal dismissed");
+        eventBus.$emit("isRemoveItem", this.nameValues);
+      } 
     },
     confirmNoModalEvent: function () {
       this.dismiss("Modal dismissed");

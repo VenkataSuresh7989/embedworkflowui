@@ -76,18 +76,30 @@
 				<div class="cardWrap" v-for="(items, title) in tooldata" :key="title">
 					<h6 class="cardHeading mb-3">
             <font-awesome-icon :icon="['fas', 'arrows-to-dot']" /> {{ title }}
+            <div class="float-end">
+              <button class="btn cus_btn btn-danger mr-2" @click="btnFrameDelete(title, 'panel')">
+                <font-awesome-icon :icon="['fas', 'trash']" />
+              </button>
+            </div>
           </h6>
+          
 					<div class="ps-5">
 						<div class="row mb-3 align-items-center" v-for="item in items" :key="item.id">
 							<div class="col-md-3">
 								<label class="form-label">{{ item.label }}</label>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-5">
 								<input type="text" class="form-control" :value="item.value" readonly />
               </div>
-							<div class="col-md-2 text-end" v-if="item.isCopy">
-								<button class="btn cus_btn" @click="copyText(item.value)">
-									<font-awesome-icon :icon="['fas', 'copy']" /> Copy 
+							<div class="col-md-4 text-end" v-if="item.isCopy">
+								<button class="btn cus_btn mr-2" @click="copyText(item.value)">
+									<font-awesome-icon :icon="['fas', 'copy']" /> Copy
+                </button>
+                <button class="btn cus_btn mr-2" @click="btnItemEdit(item, item.id)">
+									<font-awesome-icon :icon="['fas', 'pen-to-square']" /> Edit
+                </button>
+                <button class="btn cus_btn btn-danger mr-2" @click="btnItemDelete(item.id, 'item')">
+									<font-awesome-icon :icon="['fas', 'trash']" /> Delete
                 </button>
 							</div>
 						</div>
@@ -100,6 +112,8 @@
 <script>
 import ModalService from "../modules/modals/services/modal.service";
 import InformationMessage from "../views/modals/InformationMessage.vue";
+import ConfirmationMessage from "../views/modals/ConfirmationMessage.vue";
+import MsamToolEdit from "../views/modals/MsamToolEdit.vue";
 import { fetchAPIInfo } from "@/assets/script/common";
 import { eventBus } from "@/main";
 
@@ -128,11 +142,26 @@ export default {
   },
 
   mounted() {
-    eventBus.$on("btnRefresh", this.getMsamToolInfo);
+    eventBus.$on("btnRefresh",()=> {
+      this.getMsamToolInfo();
+    });
+    eventBus.$on("evtGetMsamInfo",()=> {
+      this.getMsamToolInfo();
+    });
+    eventBus.$on("isRemoveItem",(editInfo)=> {
+      let apiname = (editInfo[1] == "panel") ? `/deletetoolheader?name=${editInfo[0].toString()}` : (editInfo[1] == "item") ? `/deletetoolheaderitems?id=${editInfo[0]}` : '';
+      fetchAPIInfo("delete", `${apiname}`).then(resp => {
+        if (resp?.status === 200) {
+          this.getMsamToolInfo();
+        }
+      })
+    });
   },
 
   unmounted() {
-    eventBus.$off("btnRefresh", this.getMsamToolInfo);
+    eventBus.$off("btnRefresh");
+    eventBus.$off("evtGetMsamInfo");
+    eventBus.$off("isRemoveItem");
   },
 
   methods: {
@@ -167,6 +196,16 @@ export default {
         document.execCommand("copy");
         document.body.removeChild(tempInput);
       }
+    },
+    btnFrameDelete(idx, name) {
+      ModalService.open(ConfirmationMessage, [{ msgTitle: "", msgInfo: "Are you sure you want to remove selected panel?", nameValues:[idx, name] }]);
+    },
+    btnItemEdit(info, idx) {
+      localStorage.setItem(`editInfo${sessionStorage.getItem("access_token")}`, JSON.stringify(info));
+      ModalService.open(MsamToolEdit, [{ nameValues: info, idx}]);
+    },
+    btnItemDelete(idx, name) {
+      ModalService.open(ConfirmationMessage, [{ msgTitle: "", msgInfo: "Are you sure you want to remove selected item?", nameValues:[idx, name] }]);
     },
 
     /* -------------------- API -------------------- */

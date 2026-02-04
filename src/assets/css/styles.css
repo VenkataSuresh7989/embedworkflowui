@@ -64,6 +64,7 @@ form {
 
 form label {
 	color: var(--form-label-color);
+	text-transform: capitalize;
 }
 
 .header{
@@ -432,21 +433,30 @@ color: #d7d7d7;font-size: 30px;opacity: 0;transition: all ease .3s;}
   }
 	.quickPanel{
 		position: fixed; 
-		right: 0px;
+		right: -35rem;
+		width: 35rem;
 		text-align: right;
+		transition: all 0.5s ease-in-out;
 		top: 70px;
 	}
-	.quickPanel .quickPanelBtn{ font-size: 18px;padding: 3px 10px;overflow: hidden;}
+	.quickPanel.isOpen{right: 0rem;z-index: 10;box-shadow: 0rem 0rem 3.125rem rgba(0, 0, 0, 0.2);}
+	.quickPanel .quickPanelBtn{ 
+		position: absolute;
+		right: 100.5%;
+		font-size: 18px;
+		top: 5px;
+		padding: 3px 10px;
+	}
   	.toggleWindow{
 		margin-top:5px;
 		width: 550px;		
-		background-color: var(--header-bg);
-		transform: translateX(100%);
+		background-color: var(--header-bg);		
 		transition: all ease .3s;
 		text-align: left;
 		padding: 10px;
 		height: 100%;
 		height: calc(100vh - 155px);
+		border-radius: 5px;
 		overflow-x: hidden;
 	}
   	.toggleWindow.isOpen {

@@ -6,7 +6,7 @@
       <ModalRoot />
       <ModalChild />
       <ModalSubChild />
-      <div class="quickPanel">
+      <div :class="showPanel ? 'isOpen quickPanel' : 'quickPanel'">
         <button class="btn cus_btn quickPanelBtn" :class="showPanel ? 'window' : ''" v-on:click="displayPanel"><font-awesome-icon :icon="['fas', 'right-left']" /></button>
         <div :class="showPanel ? 'toggleWindow' : 'isOpen toggleWindow'">
           <QuickmenuScreen />

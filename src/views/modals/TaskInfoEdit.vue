@@ -68,8 +68,8 @@
 		</ModalBody>
 		<ModalFooter>
 			<div>
-				<button class="btn cus_btn" @click="btnClick">Update</button>
-				<button class="btn cus_btn ml-2 btn-danger" @click="modalDismiss">Close</button>
+				<button class="btn cus_btn" @click="btnClick()">Update</button>
+				<button class="btn cus_btn ml-2 btn-danger" @click="modalDismiss()">Close</button>
 			</div>
 		</ModalFooter>
 	</Modal>
