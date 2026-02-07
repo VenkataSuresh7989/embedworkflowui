@@ -3,9 +3,6 @@
         <!-------------------------------------- Create New Build -------------------------------------------------------------------------------------->
 		<div class="container pt-3" v-if="isDisable">
             <div class="row">
-                <!-- <div class="col-sm-12 text-center">
-                    <h3 class="main-heading"><strong>Create New Build</strong></h3>
-                </div> -->
                 <div class="text-center mb-4">
 					<button class="btn cus_btn" @click="btnNewBuild"><font-awesome-icon :icon="['fas', 'plus']" /> Create New Build</button>
 				</div>

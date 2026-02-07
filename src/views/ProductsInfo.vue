@@ -1,67 +1,5 @@
 <template>
 	<div class="container">
-
-		<!-- <div class="accordion mt-3" id="accordionExample">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						<strong><font-awesome-icon :icon="['fas', 'circle-check']" /> Select Default Product</strong>
-					</button>
-				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					<div class="accordion-body">					
-						<div class="mb-3">
-							<select class="form-select" aria-label="Default select example" v-model="ddlProdSel">
-								<option value="" selected>-- select default Product --</option>
-								<option v-for="(data,idx) in project_info" :key="idx" :value="data.id">{{ data.name }}</option>
-							</select>
-						</div>
-						<div class="text-center">
-							<button type="submit" class="btn cus_btn" @click="btnDefaultProd">Set Default Product </button>
-						</div>						
-					</div>
-				</div>
-			</div>
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingTwo">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						<strong><font-awesome-icon :icon="['fas', 'square-plus']" /> Create New Product</strong>
-					</button>
-				</h2>
-				<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-					<div class="accordion-body">
-						<div class="cardWrap">
-							<div class="mb-2">
-								<label for="exampleProjectName" class="form-label">Product Name</label>
-								<input type="text" class="form-control" id="exampleProjectName" v-model="txtName" aria-describedby="emailHelp" />
-							</div>
-							<div class="mb-2">
-								<label for="exampleFrontend" class="form-label">Frontend</label>
-								<input type="text" class="form-control" id="exampleFrontend" v-model="txtFrontend" aria-describedby="emailHelp" />
-							</div>
-							<div class="mb-2">
-								<label for="exampleBackend" class="form-label">Backend</label>
-								<input type="text" class="form-control" id="exampleBackend" v-model="txtBackend" aria-describedby="emailHelp" />
-							</div>
-							<div class="mb-2">
-								<label for="exampleDatabse" class="form-label">Database</label>
-								<input type="text" class="form-control" id="exampleDatabse" v-model="txtDatabase" aria-describedby="emailHelp" />
-							</div>
-							<div class="mb-2">
-								<label for="exampleframework" class="form-label">Framework</label>
-								<input type="text" class="form-control" id="exampleframework" v-model="txtFramework" aria-describedby="emailHelp" />
-							</div>
-							<div class="col-sm-12 text-center">
-								<button type="submit" class="btn cus_btn" @click="btnAddProduct" :disabled="isDisable"> Add Product </button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		
-
-
 		<div class="row">
 			<div class="text-center mb-4">
 				<button class="btn cus_btn" @click="btnProdSel()"><font-awesome-icon :icon="['fas', 'check']" /> Select Default Product</button>
@@ -75,11 +13,6 @@
 								<!-- Select Default Product -->
 								<div class="col-sm-6"  v-if="isProdSelChk">
 									<div class="cardWrap">
-										<!-- <div class="col-sm-12 text-center">
-											<h3 class="main-heading mb-4">
-												<strong><font-awesome-icon :icon="['fas', 'circle-check']" /> Select Default Product</strong>
-											</h3>											
-										</div> -->
 										<div class="col-sm-12 text-center">
 											<div class="mb-3">
 												<select class="form-select" aria-label="Default select example" v-model="ddlProdSel">
@@ -94,11 +27,6 @@
 								<!-- Create New Product -->
 								<div class="col-sm-6" v-if="isPCreateProdChk">
 									<div class="cardWrap">
-										<!-- <div class="text-center">
-											<h3 class="main-heading mb-4">
-												<strong><font-awesome-icon :icon="['fas', 'square-plus']" /> Create New Product</strong>
-											</h3>
-										</div> -->
 										<div class="mb-2">
 											<label for="exampleProjectName" class="form-label">Product Name</label>
 											<input type="text" class="form-control" id="exampleProjectName" v-model="txtName" aria-describedby="emailHelp" />

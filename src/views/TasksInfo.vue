@@ -3,9 +3,6 @@
 		<div class="container pt-3" v-if="isDisable">
 			<!--------------------------------------------------------------- Create New Task ------------------------------------------------------->
 			<div class="row">
-				<!-- <div class="col-sm-12 text-center">
-					<h3 class="main-heading"><strong>Create New Task</strong></h3>
-				</div>	 -->
 				<div class="text-center mb-4">
 					<button class="btn cus_btn" @click="btnNewTask"><font-awesome-icon :icon="['fas', 'plus']" /> Create New Task</button>
 				</div>

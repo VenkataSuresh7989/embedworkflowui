@@ -23,8 +23,6 @@
 	</Modal>
 </template>
 <script>
-// import ModalService from "../../modules/modals/services/modalchild.service";
-// import InformationMessage from "../../views/modals/InformationMessage.vue";
 import Modal from "../../modules/modals/components/ModalScreen.vue";
 import ModalHeader from "../../modules/modals/components/ModalHeader.vue";
 import ModalBody from "../../modules/modals/components/ModalBody.vue";

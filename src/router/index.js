@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import Dashboard from '../components/DashboardScreen.vue';
 import LoginScreen from '../components/LoginScreen.vue';
 import PageNotFound from '../components/PageNotFound.vue';
 import Tasks from '../views/TasksInfo.vue';
@@ -9,6 +8,9 @@ import Versions from '../views/VersionsInfo.vue';
 import Products from '../views/ProductsInfo.vue';
 import Employee from '../views/EmployeeInfo.vue';
 import MsamTool from '../views/MsamTool.vue';
+import FuotaInfo from '../views/FuotaInfo.vue';
+import LoopbackInfo from '../views/LoopbackInfo.vue';
+import BuildFlow from '../views/BuildFlow.vue';
 
 Vue.use(VueRouter)
 
@@ -47,6 +49,21 @@ const routes = [
     path: '/msamtool',
     name: 'MsamTool',
     component: MsamTool
+  },
+  {
+    path: '/fuota',
+    name: 'FuotaInfo',
+    component: FuotaInfo
+  },
+  {
+    path: '/loopback',
+    name: 'LoopbackInfo',
+    component: LoopbackInfo
+  },
+  {
+    path: '/buildflow',
+    name: 'BuildFlow',
+    component: BuildFlow
   },
   {
     path: '*',

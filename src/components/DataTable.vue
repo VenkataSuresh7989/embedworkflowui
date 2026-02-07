@@ -32,13 +32,6 @@
               :sort-desc.sync="sortDesc" :sort-direction="sortDirection" stacked="md" show-empty small @filtered="onFiltered" class="table-bordered fixed" 
               :class="getpageName">
 								<template #cell(images)="row">
-
-									<!-- <div class="round-image">
-                      <img src="https://i.postimg.cc/FHtz5wGQ/20231210-142803.jpg" alt="">
-                    </div> 
-                  -->
-									<!-- <div class="round-image" v-for="(data,idx) in row.item.images" :key="idx" > <img :src="getImage(data)" alt=""> </div> -->
-                  <!-- Galeria com miniaturas -->
                   <main>
                     <section class="galeria">    
                       <div class="item">
@@ -199,12 +192,6 @@ export default {
       this.infoModal.content = JSON.stringify(item, null, 2);
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
-    // btnEdit: function (info, idx) {
-    //   let getRoute = this.$route.path;
-    //   localStorage.setItem("editInfo" + sessionStorage.getItem("access_token").toString(), JSON.stringify(info));
-    //   let getEditScreen = (getRoute == "/builds") ? BuildInfoEdit : (getRoute == "/tasks") ? TaskInfoEdit : ((getRoute == "/versions") ? (this.txtTitle == "Firmware Versions Information") ? FirmwaresInfoEdit : (this.txtTitle == "Versions Information") ? VersionsInfoEdit : "" : "");
-    //   ModalService.open(getEditScreen, [{ nameValues: info, idx: idx }]);
-    // },
     btnEdit(info, idx) {
       const route = this.$route.path;
       localStorage.setItem(`editInfo${sessionStorage.getItem("access_token")}`, JSON.stringify(info));
@@ -280,18 +267,6 @@ export default {
       let getImg = axios.defaults.baseURL + "/static/images/" + getFolderPath() + img.toString();
       return getImg;
     },
-    // downloadNames() {
-    //   const displayedItems = this.items.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage);
-    //   const names = displayedItems.filter((item) => item.age > 20 && item.name.startsWith("G")).map((item) => item.name);
-    //   const textData = names.join("\n");
-
-    //   const blob = new Blob([textData], { type: "text/plain" });
-    //   const url = URL.createObjectURL(blob);
-    //   const link = document.createElement("a");
-    //   link.href = url;
-    //   link.setAttribute("download", "person-names.txt");
-    //   link.click();
-    // },
     async downloadNames() {
       try {
         console.log("this.currentPage : ", this.currentPage);

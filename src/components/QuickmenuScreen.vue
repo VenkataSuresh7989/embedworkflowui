@@ -88,7 +88,7 @@
               </div>
 
               <!-- Output -->
-              <div class="flexWrap" v-if="splitData.length">
+              <div class="flexWrap split-info" v-if="splitData.length">
                 <aside class="split-box" v-for="(item, index) in splitData" :key="index">
                   <span class="index">#{{ index }}</span>
                   <span class="value">{{ item }}</span>

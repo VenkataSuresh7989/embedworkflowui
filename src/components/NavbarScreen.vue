@@ -28,6 +28,9 @@
 								<font-awesome-icon :icon="['fas', 'sitemap']" /> Tools
 							</template>						
 							<b-dropdown-item :active="$route.path === '/msamtool'" @click="getRoute('/msamtool')">MSAM</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/fuota'" @click="getRoute('/fuota')">FUOTA</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/loopback'" @click="getRoute('/loopback')">Loopback</b-dropdown-item>
+							<b-dropdown-item :active="$route.path === '/buildflow'" @click="getRoute('/buildflow')">Build Flow</b-dropdown-item>							
 						</b-nav-item-dropdown>
 
 						<b-nav-item-dropdown text="Themes" right :class="{ show: true }">
@@ -119,7 +122,24 @@ export default {
     loadTheme() {
 		const sessionKey = 'dashboard-theme-' + sessionStorage.getItem('access_token');
 		const savedTheme = localStorage.getItem(sessionKey);
-		this.currentTheme = (savedTheme) ? savedTheme : 'theme-default';
+		
+		console.log("Current Theme", this.currentTheme);
+
+		let getDay = new Date().toLocaleDateString("en-US", { weekday: "long" });
+
+		let dayThemes = {
+			"Sunday" : "theme-ocean",
+			"Monday" : "theme-sunset",
+			"Tuesday" : "theme-forest",
+			"Wednesday" : "theme-purple",
+			"Thursday" : "theme-teal",
+			"Friday" : "theme-gray",
+			"Saturday" : "theme-deepblue"
+		}
+
+		this.currentTheme = (savedTheme) ? savedTheme : dayThemes[getDay] || 'theme-default';
+
+		
 		document.body.classList.add(this.currentTheme);		
     },
 	capitalizeFirstLetter(value) {

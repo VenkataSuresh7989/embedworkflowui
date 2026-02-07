@@ -77,7 +77,7 @@
 					<h6 class="cardHeading mb-3">
             <font-awesome-icon :icon="['fas', 'arrows-to-dot']" /> {{ title }}
             <div class="float-end">
-              <button class="btn cus_btn btn-danger mr-2" @click="btnFrameDelete(title, 'panel')">
+              <button class="btn cus_btn btn-danger" @click="btnFrameDelete(title, 'panel')">
                 <font-awesome-icon :icon="['fas', 'trash']" />
               </button>
             </div>
@@ -98,7 +98,7 @@
                 <button class="btn cus_btn mr-2" @click="btnItemEdit(item, item.id)">
 									<font-awesome-icon :icon="['fas', 'pen-to-square']" /> Edit
                 </button>
-                <button class="btn cus_btn btn-danger mr-2" @click="btnItemDelete(item.id, 'item')">
+                <button class="btn cus_btn btn-danger" @click="btnItemDelete(item.id, 'item')">
 									<font-awesome-icon :icon="['fas', 'trash']" /> Delete
                 </button>
 							</div>
