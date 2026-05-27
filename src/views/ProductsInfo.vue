@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="text-center mb-4">
 				<button class="btn cus_btn" @click="btnProdSel()"><font-awesome-icon :icon="['fas', 'check']" /> Select Default Product</button>
-				<button class="btn cus_btn ml-3" v-if="!isDisable" @click="btnCreateProd()"><font-awesome-icon :icon="['fas', 'plus']" /> Create New Product</button>
+				<button class="btn cus_btn ml-3" v-if="isDisable" @click="btnCreateProd()"><font-awesome-icon :icon="['fas', 'plus']" /> Create New Product</button>
 			</div>
 			<div class="col-sm-12">
 				<div class="mt-3" style="width: auto">
@@ -70,8 +70,8 @@
 							<li v-if="(data.framework == '') ? false : true ">IDE : {{ data.framework }}</li>							
 						</ul>
 						<div class="actions mt-2">
-							<button class="btn cus_btn" @click="btnEdit(data, data.id)" :disabled="isDisable"><font-awesome-icon :icon="['fas', 'pen-to-square']" /></button>
-							<button class="ml-2 btn-danger btn cus_btn" @click="btnSelIdx(data.id)" :disabled="isDisable"><font-awesome-icon :icon="['far', 'trash-can']" /></button>
+							<button class="btn cus_btn" @click="btnEdit(data, data.id)" v-show="isDisable"><font-awesome-icon :icon="['fas', 'pen-to-square']" /></button>
+							<button class="ml-2 btn-danger btn cus_btn" @click="btnSelIdx(data.id)" v-show="isDisable"><font-awesome-icon :icon="['far', 'trash-can']" /></button>
 						</div>
 					</div>
 				</div>
@@ -112,7 +112,7 @@ export default {
   computed: {
 	isDisable: function() {
 		let roleIdx = getUserRole();
-		return ((roleIdx == 0) || (roleIdx == 1)) ? false : true;
+		return (roleIdx == 2);
 	}
   },
   mounted() {
@@ -166,6 +166,7 @@ export default {
 			if(resp.status == 200) {
 				this.getProdSel = resp?.data[0]?.["prod_idx"];
 				this.ddlProdSel = resp?.data[0]?.["prod_idx"];
+				eventBus.$emit("evtupdateprodsel");
 			}
 		}
 	},

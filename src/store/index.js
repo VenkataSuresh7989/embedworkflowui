@@ -2,15 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-
-var baseIP = "192.168.1.6";
-axios.defaults.baseURL = 'http://'+ baseIP + ':8000';
-
-// var baseIP = "192.168.1.161";
-// axios.defaults.baseURL = 'http://'+ baseIP + ':8000';
-
-// var baseIP = location.hostname + ":8000";
-// axios.defaults.baseURL = 'http://'+ baseIP;
+axios.defaults.baseURL = `http://${window.location.hostname}:8000`;
 
 Vue.use(Vuex)
 

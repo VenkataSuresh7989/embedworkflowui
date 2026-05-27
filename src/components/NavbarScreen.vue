@@ -22,8 +22,7 @@
 							<b-dropdown-item :active="$route.path === '/versions'" @click="getRoute('/versions')">Versions</b-dropdown-item>
 							<b-dropdown-item :active="$route.path === '/employee'" @click="getRoute('/employee')" v-if="isDisable">Employee</b-dropdown-item>
 						</b-nav-item-dropdown>
-
-						<b-nav-item-dropdown text="Tools" right :class="{ show: true }"  :active="isToolActive">
+						<b-nav-item-dropdown text="Tools" right :class="{ show: true }"  :active="isToolActive" v-show="isMSAM">
 							<template #button-content>
 								<font-awesome-icon :icon="['fas', 'sitemap']" /> Tools
 							</template>						
@@ -57,12 +56,13 @@ import { eventBus } from "@/main";
 import ModalService from "@/modules/modals/services/modal.service";
 import ConfirmationMessage from "@/views/modals/ConfirmationMessage.vue";
 import ProfileInfo from "../views/modals/ProfileInfo.vue";
-import { getUser, getUserRole } from "@/assets/script/common";
+import { getUser, getUserRole, getOrgInfo } from "@/assets/script/common";
 
 export default {
   name: "NavbarScreen",
 	data() {
 		return {
+			isMSAM : false,
 			themes: [
 				{ name: "Default", value: "theme-default" },
 				{ name: "Ocean Blue", value: "theme-ocean" },
@@ -81,10 +81,10 @@ export default {
 	},
   computed: {
 	isOptionsActive() {
-        return ['/tasks', '/builds', '/employee'].includes(this.$route.path);
+        return ['/tasks', '/builds', '/employee', '/versions'].includes(this.$route.path);
     },
 	isToolActive() {
-        return ['/msamtool'].includes(this.$route.path);
+        return ['/msamtool', '/fuota', '/loopback', '/buildflow'].includes(this.$route.path);
     },
     isDisable: function() {
       let roleIdx = getUserRole();
@@ -102,11 +102,22 @@ export default {
     eventBus.$on("isSignout", () => {
       this.logoutConfMsg();
     });
+	eventBus.$on("evtupdateprodsel", () => {
+      this.getProdSel();
+    });
+	
   },
   destroyed() {
     eventBus.$off("isSignout");
+	eventBus.$off("evtupdateprodsel");
   },
   methods: {
+	getProdSel() {
+		const product_info = getOrgInfo("product_info");
+		const sel_product = getOrgInfo("product_idx");
+		const msamId = product_info?.find(prod => prod?.name === "MSAM")?.id;
+		this.isMSAM = sel_product?.['prod_idx'] == msamId || false;
+	},
 	changeTheme(themeName) {
       document.body.className = document.body.className
         .split(' ')
@@ -120,26 +131,31 @@ export default {
       this.currentTheme = themeName;
     },
     loadTheme() {
+		/*
+			const sessionKey = 'dashboard-theme-' + sessionStorage.getItem('access_token');
+			const savedTheme = localStorage.getItem(sessionKey);
+			
+			console.log("Current Theme", this.currentTheme);
+
+			let getDay = new Date().toLocaleDateString("en-US", { weekday: "long" });
+
+			let dayThemes = {
+				"Sunday" : "theme-ocean",
+				"Monday" : "theme-sunset",
+				"Tuesday" : "theme-forest",
+				"Wednesday" : "theme-purple",
+				"Thursday" : "theme-teal",
+				"Friday" : "theme-gray",
+				"Saturday" : "theme-deepblue"
+			}
+
+			this.currentTheme = (savedTheme) ? savedTheme : dayThemes[getDay] || 'theme-default';		
+			document.body.classList.add(this.currentTheme);
+		*/
 		const sessionKey = 'dashboard-theme-' + sessionStorage.getItem('access_token');
 		const savedTheme = localStorage.getItem(sessionKey);
-		
-		console.log("Current Theme", this.currentTheme);
 
-		let getDay = new Date().toLocaleDateString("en-US", { weekday: "long" });
-
-		let dayThemes = {
-			"Sunday" : "theme-ocean",
-			"Monday" : "theme-sunset",
-			"Tuesday" : "theme-forest",
-			"Wednesday" : "theme-purple",
-			"Thursday" : "theme-teal",
-			"Friday" : "theme-gray",
-			"Saturday" : "theme-deepblue"
-		}
-
-		this.currentTheme = (savedTheme) ? savedTheme : dayThemes[getDay] || 'theme-default';
-
-		
+		this.currentTheme = (savedTheme) ? savedTheme : 'theme-default';
 		document.body.classList.add(this.currentTheme);		
     },
 	capitalizeFirstLetter(value) {

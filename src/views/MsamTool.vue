@@ -3,7 +3,7 @@
 		<!-- MSAM Tool Container -->
 		<div class="container pt-3">
 			<!-- Create Frame Button -->
-			<div class="text-center mb-4">
+			<div class="text-center mb-4" v-show="isDisable">
 				<button class="btn cus_btn" @click="toggleFrame">
           <font-awesome-icon :icon="['fas', 'plus']" /> Create New Frame 
         </button>
@@ -77,7 +77,7 @@
 					<h6 class="cardHeading mb-3">
             <font-awesome-icon :icon="['fas', 'arrows-to-dot']" /> {{ title }}
             <div class="float-end">
-              <button class="btn cus_btn btn-danger" @click="btnFrameDelete(title, 'panel')">
+              <button class="btn cus_btn btn-danger" @click="btnFrameDelete(title, 'panel')"  v-show="isDisable">
                 <font-awesome-icon :icon="['fas', 'trash']" />
               </button>
             </div>
@@ -95,10 +95,10 @@
 								<button class="btn cus_btn mr-2" @click="copyText(item.value)">
 									<font-awesome-icon :icon="['fas', 'copy']" /> Copy
                 </button>
-                <button class="btn cus_btn mr-2" @click="btnItemEdit(item, item.id)">
+                <button class="btn cus_btn mr-2" @click="btnItemEdit(item, item.id)" v-show="isDisable">
 									<font-awesome-icon :icon="['fas', 'pen-to-square']" /> Edit
                 </button>
-                <button class="btn cus_btn btn-danger" @click="btnItemDelete(item.id, 'item')">
+                <button class="btn cus_btn btn-danger" @click="btnItemDelete(item.id, 'item')" v-show="isDisable">
 									<font-awesome-icon :icon="['fas', 'trash']" /> Delete
                 </button>
 							</div>
@@ -114,7 +114,7 @@ import ModalService from "../modules/modals/services/modal.service";
 import InformationMessage from "../views/modals/InformationMessage.vue";
 import ConfirmationMessage from "../views/modals/ConfirmationMessage.vue";
 import MsamToolEdit from "../views/modals/MsamToolEdit.vue";
-import { fetchAPIInfo } from "@/assets/script/common";
+import { fetchAPIInfo, getUserRole } from "@/assets/script/common";
 import { eventBus } from "@/main";
 
 const DEFAULT_FORM_FIELDS = () => ({
@@ -136,7 +136,12 @@ export default {
       formFields: DEFAULT_FORM_FIELDS(),
     };
   },
-
+computed: {
+		isDisable: function() {
+			let roleIdx = getUserRole();
+			return (roleIdx == 2);
+		}
+	},
   created() {
     this.getMsamToolInfo();
   },

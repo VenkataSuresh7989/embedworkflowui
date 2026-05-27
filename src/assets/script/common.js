@@ -73,9 +73,9 @@ export function chgDataFormat(chgData) {
 
 /* ---------------------------------------------------------------- GET PRODUCT ID -------------------------------------------------------------------- */
 
-export function getProdIdx(opt) {
+export function getSelProdIdx() {
   let resp = JSON.parse(localStorage.getItem("product_idx" + sessionStorage.getItem("access_token").toString()));  
-  return (resp != undefined && resp != null) ? resp[opt] : "";
+  return (resp != undefined && resp != null) ? resp : {};
 }
 
 /* ---------------------------------------------------------------- GET ORIFINAL INFO ---------------------------------------------------------------- */
